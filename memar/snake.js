@@ -11,10 +11,38 @@ canvas.height = window.innerHeight * 0.8;  // Ekranın 80%-i
 
 const canvasSize = canvas.width / box;  // Ekran ölçüsünü şəbəkəyə çevirmək
 
-let snake = [{x: 9 * box, y: 9 * box}];  // İlanın başlanğıcı
-let food = {x: Math.floor(Math.random() * canvasSize) * box, y: Math.floor(Math.random() * canvasSize) * box};  // Yeyilməsi lazım olan yemək
-let dir = "RIGHT";  // Başlanğıc istiqaməti
-let score = 0;  // Xal
+let snake, food, dir, score, collisionCount;
+let gameInterval; // Oyun dövrü üçün interval
+
+// Oyun sıfırlama funksiyası
+function resetGame() {
+    snake = [{x: 9 * box, y: 9 * box}];  // İlanın başlanğıcı
+    food = generateFood();  // Yeni yemək yeri
+    dir = "RIGHT";  // Başlanğıc istiqaməti
+    score = 0;  // Xal
+    collisionCount = 0; // Toqquşma sayı
+}
+
+// Yeni yemək yeri təyin edirik
+function generateFood() {
+    let foodX = Math.floor(Math.random() * canvasSize) * box;
+    let foodY = Math.floor(Math.random() * canvasSize) * box;
+    return {x: foodX, y: foodY};
+}
+
+// Oyun bitmə funksiyası
+function gameOver() {
+    clearInterval(gameInterval); // Oyun dövrünü dayandır
+    alert("Sadiqov Aliyusuf tərəfindən yaradılan Oyun bitdi 😉 ! Xal: " + score);
+    document.getElementById("startButton").disabled = false; // Start düyməsini aktiv et
+}
+
+// Start düyməsi funksiyası
+function startGame() {
+    resetGame();  // Oyun sıfırlanır
+    document.getElementById("startButton").disabled = true; // Start düyməsini deaktiv et
+    gameInterval = setInterval(draw, 100);  // Oyun dövrünü başlat
+}
 
 // Klaviaturadan istiqamət dəyişmək
 document.addEventListener("keydown", direction);
@@ -80,8 +108,12 @@ function draw() {
 
     // İlan özünə toxunduqda oyunu bitiririk
     if (collision(newHead, snake)) {
-        alert("Oyun bitdi! Xal: " + score);
-        resetGame();
+        collisionCount++;
+        if (collisionCount >= 3) {
+            gameOver();  // 3 dəfə toqquşma ilə oyun bitir
+        } else {
+            resetGame();
+        }
     }
 
     snake.unshift(newHead);  // Yeni başı əlavə edirik
@@ -89,10 +121,7 @@ function draw() {
     // İlan yeməyi yediyində yeni yemək yaradılır
     if (snakeX === food.x && snakeY === food.y) {
         score++;  // Xalı artır
-        food = {  // Yeni yemək yerini təyin edirik
-            x: Math.floor(Math.random() * canvasSize) * box,
-            y: Math.floor(Math.random() * canvasSize) * box
-        };
+        food = generateFood();  // Yeni yemək yaradılır
     } else {
         snake.pop();  // İlanın sonunu silirik
     }
@@ -112,13 +141,3 @@ function collision(head, array) {
     }
     return false;
 }
-
-// Oyunu sıfırlamaq
-function resetGame() {
-    snake = [{x: 9 * box, y: 9 * box}];  // İlanı sıfırla
-    dir = "RIGHT"; // Yönü sıfırla
-    score = 0;  // Xalı sıfırla
-}
-
-// Oyun dövrünü başlatmaq
-let game = setInterval(draw, 100);  // 100ms interval ilə oyunu yeniləyirik

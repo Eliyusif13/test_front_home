@@ -13,15 +13,29 @@
             align-items: center;
             height: 100vh;
             background-color: #333;
+            flex-direction: column;
         }
         canvas {
             background-color: #000;
-            display: block;  /* Canvas-ı mərkəzləşdiririk */
+        }
+        #startButton {
+            padding: 10px 20px;
+            font-size: 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        #startButton:disabled {
+            background-color: #ccc;
         }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas"></canvas>
+    <button id="startButton" onclick="startGame()">Start</button>
     <script src="snake.js"></script>
 </body>
 </html>
