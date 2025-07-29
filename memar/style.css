@@ -1,0 +1,87 @@
+body {
+    font-family: "Playfair Display", serif;
+
+}
+
+header {
+    margin: 15px 30px;
+}
+
+h1#tittleWord {
+    display: inline-block;
+    font-weight: 400;
+
+}
+
+.container {
+    display: inline-block;
+}
+
+nav li {
+    display: inline-block;
+}
+
+.container a {
+    font-size: large;
+    padding: 0px 10px;
+    text-decoration: none;
+    color: black;
+}
+
+#memar {
+    text-decoration: underline;
+}
+
+section {
+    display: inline-block;
+}
+
+.image img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.image {
+    display: inline-block;
+    width: 49%;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+h2 {
+    font-weight: 100;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+img:hover {
+    opacity: 0.9;
+}
+
+.gallery {
+    padding: 12px;
+}
+
+#motiveWord {
+    width: 50%;
+    height: 300px;
+
+}
+
+#mtvHdr {
+    display: flex;
+    justify-content: center;
+}
+
+#latter,
+h1 {
+    font-style: italic;
+    word-spacing: 4px;
+}
+
+h1 {
+    color: red;
+    border-bottom: 1px solid red;
+    display: inline-block;
+}
