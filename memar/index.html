@@ -11,9 +11,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
             height: 100vh;
             background-color: #333;
+            flex-direction: column;
         }
         canvas {
             background-color: #000;
@@ -31,37 +31,56 @@
         #startButton:disabled {
             background-color: #ccc;
         }
+
+        /* Düymələrin düzülüşü */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        /* Sol tərəfdəki düymələr (yuxarı və aşağı) */
+        .left-controls, .right-controls {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Sağ tərəfdəki düymələr (sağa və sola) */
+        .right-controls {
+            margin-left: auto;
+        }
+
         .control-btn {
-            width: 80px;
-            height: 80px;
+            width: 50px;
+            height: 50px;
             margin: 10px;
             background-color: #4CAF50;
             border: none;
-            border-radius: 50%;
             color: white;
-            font-size: 30px;
+            font-size: 20px;
             cursor: pointer;
+            border-radius: 5px;  /* Kvadrat düymələr */
         }
-        .controls {
-            display: flex;
-            justify-content: center;
-        }
-        .column {
-            display: flex;
-            flex-direction: column;
+        .control-btn:active {
+            background-color: #45a049; /* Toxunulanda rəng dəyişir */
         }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas"></canvas>
+    <!-- Sol tərəf düymələri -->
     <div class="controls">
-        <div class="column">
+        <div class="left-controls">
             <button id="up" class="control-btn">↑</button>
-            <div style="display: flex;">
-                <button id="left" class="control-btn">←</button>
-                <button id="right" class="control-btn">→</button>
-            </div>
             <button id="down" class="control-btn">↓</button>
+        </div>
+        <!-- Sağ tərəf düymələri -->
+        <div class="right-controls">
+            <button id="left" class="control-btn">←</button>
+            <button id="right" class="control-btn">→</button>
         </div>
     </div>
     <button id="startButton" onclick="startGame()">Start</button>
