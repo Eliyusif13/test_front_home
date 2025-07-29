@@ -44,35 +44,11 @@ function startGame() {
     gameInterval = setInterval(draw, 100);  // Oyun dövrünü başlat
 }
 
-// Klaviaturadan istiqamət dəyişmək
-document.addEventListener("keydown", direction);
-
-// Mobil toxunma ilə idarə etmə
-canvas.addEventListener("touchstart", function(e) {
-    const touchX = e.touches[0].clientX;
-    const touchY = e.touches[0].clientY;
-    if (touchX < canvas.width / 2) {
-        if (touchY < canvas.height / 2) {
-            dir = "UP";
-        } else {
-            dir = "DOWN";
-        }
-    } else {
-        if (touchY < canvas.height / 2) {
-            dir = "RIGHT";
-        } else {
-            dir = "LEFT";
-        }
-    }
-});
-
-// İlanın istiqamətini dəyişmək
-function direction(event) {
-    if (event.keyCode === 37 && dir !== "RIGHT") dir = "LEFT";  // Sol
-    if (event.keyCode === 38 && dir !== "DOWN") dir = "UP";   // Yuxarı
-    if (event.keyCode === 39 && dir !== "LEFT") dir = "RIGHT";  // Sağ
-    if (event.keyCode === 40 && dir !== "UP") dir = "DOWN";   // Aşağı
-}
+// Mobil düymələrə toxunma funksiyaları:
+document.getElementById("up").addEventListener("click", () => { if (dir !== "DOWN") dir = "UP"; });
+document.getElementById("down").addEventListener("click", () => { if (dir !== "UP") dir = "DOWN"; });
+document.getElementById("left").addEventListener("click", () => { if (dir !== "RIGHT") dir = "LEFT"; });
+document.getElementById("right").addEventListener("click", () => { if (dir !== "LEFT") dir = "RIGHT"; });
 
 // Oyun funksiyası
 function draw() {

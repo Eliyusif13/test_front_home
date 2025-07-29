@@ -11,9 +11,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
             background-color: #333;
-            flex-direction: column;
         }
         canvas {
             background-color: #000;
@@ -31,10 +31,39 @@
         #startButton:disabled {
             background-color: #ccc;
         }
+        .control-btn {
+            width: 80px;
+            height: 80px;
+            margin: 10px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+        }
+        .column {
+            display: flex;
+            flex-direction: column;
+        }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas"></canvas>
+    <div class="controls">
+        <div class="column">
+            <button id="up" class="control-btn">↑</button>
+            <div style="display: flex;">
+                <button id="left" class="control-btn">←</button>
+                <button id="right" class="control-btn">→</button>
+            </div>
+            <button id="down" class="control-btn">↓</button>
+        </div>
+    </div>
     <button id="startButton" onclick="startGame()">Start</button>
     <script src="snake.js"></script>
 </body>
