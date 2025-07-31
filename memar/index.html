@@ -1,170 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SadiqovGBT - Chatbot</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #e5e5e5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SadiqovGBT - Chatbot</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://wallpapershome.com/images/pages/pic_h/262.jpg');
+            /* Şəkil URL-ni daxil edin */
 
-    .chat-container {
-      background-color: #fff;
-      border-radius: 20px;
-      width: 80%;
-      max-width: 450px;
-      height: 500px;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
+        }
 
-    .chat-header {
-      background-color: #4CAF50;
-      color: white;
-      text-align: center;
-      padding: 12px;
-      font-weight: bold;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-      font-size: 18px;
-    }
+        .chat-container {
+            background-color: rgb(30 13 13 / 80%);
+            border-radius: 20px;
+            width: 80%;
+            max-width: 450px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background-size: cover;
+            /* Şəkili ekranda tam göstərmək üçün */
+            background-position: center;
+            /* Şəkilin mərkəzə uyğunlaşdırılması */
+        }
 
-    .chat-box {
-      flex-grow: 1;
-      padding: 20px;
-      overflow-y: auto;
-      margin-bottom: 20px;
-      display: flex;
-      flex-direction: column;
-    }
+        .chat-header {
+            background-image: url(https://i.graphicmama.com/uploads/2019/2/5c5a333b5e497-Simple-Vector-Background-with-Abstract-Lines.jpg);
+            color: #732323;
+            text-align: center;
+            padding: 6px;
+            font-weight: 900;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            font-size: 24px;
+            background-size: cover;
+            letter-spacing: 3px;
+        }
 
-    .message {
-      margin: 10px 0;
-      padding: 12px;
-      border-radius: 12px;
-      max-width: 75%;
-    }
+        .chat-box {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .user-message {
-      background-color: #d1f7c4;
-      align-self: flex-end;
-    }
+        .message {
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 12px;
+            max-width: 75%;
+        }
 
-    .bot-message {
-      background-color: #f1f1f1;
-      align-self: flex-start;
-    }
+        .user-message {
+            background-color: #d1f7c4;
+            align-self: flex-end;
+        }
 
-    #user-input {
-      width: calc(100% - 20px);
-      padding: 10px;
-      border: none;
-      border-radius: 20px;
-      margin-bottom: 10px;
-      outline: none;
-      background-color: #f1f1f1;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-    }
+        .bot-message {
+            background-color: #f1f1f1;
+            align-self: flex-start;
+        }
 
-    button {
-      padding: 10px 15px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      margin-bottom: 20px;
-      margin-top: 10px;
-    }
+        #user-input {
+            width: 423px;
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            margin-bottom: 0px;
+            outline: none;
+            background-color: #d9e1d4;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
 
-    button:hover {
-      background-color: #45a049;
-    }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
 
-    /* Media Queries for Mobile */
-    @media (max-width: 600px) {
-      .chat-container {
-        width: 95%;
-      }
+        button:hover {
+            background-color: #45a049;
+        }
 
-      .chat-box {
-        padding: 15px;
-      }
+        /* Media Queries for Mobile */
+        @media (max-width: 600px) {
+            .chat-container {
+                width: 95%;
+            }
 
-      .message {
-        padding: 10px;
-        font-size: 14px;
-      }
-    }
-  </style>
+            .chat-box {
+                padding: 15px;
+            }
+
+            .message {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-  <div class="chat-container">
-    <div class="chat-header">
-      SadiqovGBT
+    <div class="chat-container">
+        <div class="chat-header">
+            SadiqovGBT
+        </div>
+        <div class="chat-box" id="chat-box">
+            <!-- Chat messages will appear here -->
+        </div>
+        <input type="text" id="user-input" placeholder="Bir şey yazın..." />
     </div>
-    <div class="chat-box" id="chat-box">
-      <!-- Chat messages will appear here -->
-    </div>
-    <input type="text" id="user-input" placeholder="Bir şey yazın..." />
-    <button onclick="sendMessage()">Göndər</button>
-  </div>
 
-  <script>
-    // Mesaj göndərmə funksiyası
-    function sendMessage() {
-      var userInput = document.getElementById("user-input").value;
-      var chatBox = document.getElementById("chat-box");
+    <script>
+        // Mesaj göndərmə funksiyası
+        function sendMessage() {
+            var userInput = document.getElementById("user-input").value;
+            var chatBox = document.getElementById("chat-box");
 
-      if (userInput) {
-        // İstifadəçi mesajını ekrana əlavə edirik
-        var userMessage = document.createElement("div");
-        userMessage.classList.add("message", "user-message");
-        userMessage.textContent = userInput;
-        chatBox.appendChild(userMessage);
+            if (userInput) {
+                // İstifadəçi mesajını ekrana əlavə edirik
+                var userMessage = document.createElement("div");
+                userMessage.classList.add("message", "user-message");
+                userMessage.textContent = userInput;
+                chatBox.appendChild(userMessage);
 
-        // Bot cavabını almaq
-        var botResponse = getBotResponse(userInput.toLowerCase());
+                // Bot cavabını almaq
+                var botResponse = getBotResponse(userInput.toLowerCase());
 
-        // Bot cavabını ekrana əlavə edirik
-        var botMessage = document.createElement("div");
-        botMessage.classList.add("message", "bot-message");
-        botMessage.textContent = botResponse;
-        chatBox.appendChild(botMessage);
+                // Bot cavabını ekrana əlavə edirik
+                var botMessage = document.createElement("div");
+                botMessage.classList.add("message", "bot-message");
+                botMessage.textContent = botResponse;
+                chatBox.appendChild(botMessage);
 
-        // İstifadəçi mesajını input sahəsindən silirik
-        document.getElementById("user-input").value = "";
+                // İstifadəçi mesajını input sahəsindən silirik
+                document.getElementById("user-input").value = "";
 
-        // Ekranı aşağıya doğru çəkirik ki, yeni mesaj görünsün
-        chatBox.scrollTop = chatBox.scrollHeight;
-      }
-    }
+                // Ekranı aşağıya doğru çəkirik ki, yeni mesaj görünsün
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        }
 
-    // Bot cavablarını `if` şərtləri ilə veririk
-    function getBotResponse(input) {
-      if (input.includes("salom") || input.includes("salam")) {
-        return "Salam, necəsən?";
-      } else if (input.includes("necəsən")) {
-        return "Yaxşıyam, sağ olun!";
-      } else if (input.includes("təşəkkür")) {
-        return "Rica edirəm!";
-      } else if (input.includes("hələlik") || input.includes("sağ ol")) {
-        return "Hələlik, görüşərik!";
-      } else {
-        return "Bağışlayın, başa düşə bilmirəm.";
-      }
-    }
-  </script>
+        // Bot cavablarını `if` şərtləri ilə veririk
+        function getBotResponse(input) {
+            if (input.includes("salom") || input.includes("salam")) {
+                return "Salam, necəsən?";
+            } else if (input.includes("necəsən")) {
+                return "Yaxşıyam, sağ olun!";
+            } else if (input.includes("təşəkkür")) {
+                return "Rica edirəm!";
+            } else if (input.includes("hələlik") || input.includes("sağ ol")) {
+                return "Hələlik, görüşərik!";
+            } else {
+                return "Bağışlayın, başa düşə bilmirəm.";
+            }
+        }
+
+        // `Enter` düyməsi ilə mesaj göndərmək üçün
+        document.getElementById("user-input").addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+    </script>
 
 </body>
+
 </html>
